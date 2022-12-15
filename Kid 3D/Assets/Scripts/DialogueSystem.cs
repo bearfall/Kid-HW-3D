@@ -14,6 +14,8 @@ namespace bearfall
         private float dialogueIntervalTime = 0.1f;
         [SerializeField, Header("開頭對話")]
         private DialogueData dialogueOpening;
+        [SerializeField, Header("對話按鍵")]
+        private KeyCode dialogueKey = KeyCode.Space;
 
         private WaitForSeconds dialogueInterval => new WaitForSeconds(dialogueIntervalTime);
 
@@ -49,21 +51,33 @@ namespace bearfall
                 yield return new WaitForSeconds(0.04f);
             }
         }
-
+        #region 打字效果
         private IEnumerator TypeEffect()
         {
             textName.text = dialogueOpening.dialogueName;
-            textContent.text = "";
 
-            string dialogue = dialogueOpening.dialogueContents[1];
-
-            for (int i = 0; i < dialogue.Length; i++)
+            for (int j = 0; j < dialogueOpening.dialogueContents.Length; j++)
             {
-                textContent.text += dialogue[i];
-                yield return dialogueInterval;
-            }
+                textContent.text = "";
+                goTriangle.SetActive(false);
 
-            goTriangle.SetActive(true);
+                string dialogue = dialogueOpening.dialogueContents[j];
+
+                for (int i = 0; i < dialogue.Length; i++)
+                {
+                    textContent.text += dialogue[i];
+                    yield return dialogueInterval;
+                }
+
+                goTriangle.SetActive(true);
+
+                //如果 玩家 還沒按下 指定按鍵 就等待
+                while (!Input.GetKeyDown(dialogueKey))
+                {
+                    yield return null;
+                }
+            }
         }
+        #endregion
     }
 }
