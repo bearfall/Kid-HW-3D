@@ -4881,6 +4881,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e39d97c76fd339640a63bf25abf0002e, type: 3}
+--- !u!1 &1493936445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1595726624057019694, guid: b75dc721d5dfb41439c5b83d9f9b57ea, type: 3}
+  m_PrefabInstance: {fileID: 532999041509556955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1493936450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493936445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68272ef8ecbc1464cb85eaf1e07bc797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataDialogue: {fileID: 11400000, guid: 700a28a850bf53346a59b5ac4af6cd71, type: 2}
+--- !u!65 &1493936451
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493936445}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: -0.8}
 --- !u!1 &1501195252
 GameObject:
   m_ObjectHideFlags: 0
@@ -5737,6 +5768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueIntervalTime: 0.1
   dialogueOpening: {fileID: 11400000, guid: 700a28a850bf53346a59b5ac4af6cd71, type: 2}
+  dialogueKey: 32
 --- !u!225 &1788318652
 CanvasGroup:
   m_ObjectHideFlags: 0
