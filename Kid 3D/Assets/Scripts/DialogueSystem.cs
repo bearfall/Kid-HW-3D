@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.InputSystem;
 namespace bearfall
 {
     /// <summary>
@@ -26,6 +27,9 @@ namespace bearfall
         private GameObject goTriangle;
         #endregion
 
+        private PlayerInput playerInput;
+
+
         #region 事件
         private void Awake()
         {
@@ -35,11 +39,17 @@ namespace bearfall
             goTriangle = GameObject.Find("對話完成圖示");
             goTriangle.SetActive(false);
 
-            StartCoroutine(FadeGroup());
-            StartCoroutine(TypeEffect());
+            playerInput = GameObject.Find("PlayerCapsule").GetComponent<PlayerInput>();
+
+            StartDialogue(dialogueOpening);
         } 
         #endregion
-
+        public void StartDialogue(DialogueData data)
+        {
+            playerInput.enabled = false;
+            StartCoroutine(FadeGroup());
+            StartCoroutine(TypeEffect(data));
+        }
         /// <summary>
         /// 淡入淡出群組物件
         /// </summary>
@@ -54,16 +64,16 @@ namespace bearfall
             }
         }
         #region 打字效果
-        private IEnumerator TypeEffect()
+        private IEnumerator TypeEffect(DialogueData data)
         {
-            textName.text = dialogueOpening.dialogueName;
+            textName.text = data.dialogueName;
 
-            for (int j = 0; j < dialogueOpening.dialogueContents.Length; j++)
+            for (int j = 0; j < data.dialogueContents.Length; j++)
             {
                 textContent.text = "";
                 goTriangle.SetActive(false);
 
-                string dialogue = dialogueOpening.dialogueContents[j];
+                string dialogue = data.dialogueContents[j];
 
                 for (int i = 0; i < dialogue.Length; i++)
                 {
@@ -81,6 +91,8 @@ namespace bearfall
             }
 
             StartCoroutine(FadeGroup(false));
+
+            playerInput.enabled = true;
         }
         #endregion
     }
