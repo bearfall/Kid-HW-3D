@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
+
 namespace bearfall
 {
     /// <summary>
@@ -25,9 +27,11 @@ namespace bearfall
         private TextMeshProUGUI textName;
         private TextMeshProUGUI textContent;
         private GameObject goTriangle;
+        private PlayerInput playerInput;
+        private UnityEvent onDialogueFinish;
         #endregion
 
-        private PlayerInput playerInput;
+
 
 
         #region 事件
@@ -44,11 +48,17 @@ namespace bearfall
             StartDialogue(dialogueOpening);
         } 
         #endregion
-        public void StartDialogue(DialogueData data)
+        /// <summary>
+        /// 開始對話
+        /// </summary>
+        /// <param name="data">要執行的對話資料</param>
+        /// <param name="_onDialogueFinish">對話結束的事件，可以為空值</param>
+        public void StartDialogue(DialogueData data, UnityEvent _onDialogueFinish = null)
         {
             playerInput.enabled = false;
             StartCoroutine(FadeGroup());
             StartCoroutine(TypeEffect(data));
+            onDialogueFinish = _onDialogueFinish;
         }
         /// <summary>
         /// 淡入淡出群組物件
@@ -92,7 +102,8 @@ namespace bearfall
 
             StartCoroutine(FadeGroup(false));
 
-            playerInput.enabled = true;
+            playerInput.enabled = true;             //開啟玩家輸入元件
+            onDialogueFinish?.Invoke();               //對話結束事件.呼叫();
         }
         #endregion
     }
