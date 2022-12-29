@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.InputSystem;
@@ -7,17 +7,17 @@ using UnityEngine.Events;
 namespace bearfall
 {
     /// <summary>
-    /// ¹ï¸Ü¨t²Î
+    /// å°è©±ç³»çµ±
     /// </summary>
 
     public class DialogueSystem : MonoBehaviour
     {
-        #region ¸ê®Æ°Ï°ì
-        [SerializeField, Header("¹ï¸Ü¶¡¹j"), Range(0, 0.5f)]
+        #region è³‡æ–™å€åŸŸ
+        [SerializeField, Header("å°è©±é–“éš”"), Range(0, 0.5f)]
         private float dialogueIntervalTime = 0.1f;
-        [SerializeField, Header("¶}ÀY¹ï¸Ü")]
+        [SerializeField, Header("é–‹é ­å°è©±")]
         private DialogueData dialogueOpening;
-        [SerializeField, Header("¹ï¸Ü«öÁä")]
+        [SerializeField, Header("å°è©±æŒ‰éµ")]
         private KeyCode dialogueKey = KeyCode.Space;
 
         private WaitForSeconds dialogueInterval => new WaitForSeconds(dialogueIntervalTime);
@@ -34,13 +34,13 @@ namespace bearfall
 
 
 
-        #region ¨Æ¥ó
+        #region äº‹ä»¶
         private void Awake()
         {
-            groupDialogue = GameObject.Find("µe¥¬¹ï¸Ü¨t²Î").GetComponent<CanvasGroup>();
-            textName = GameObject.Find("¹ï¸ÜªÌ¦WºÙ").GetComponent<TextMeshProUGUI>();
-            textContent = GameObject.Find("¹ï¸Ü¤º®e").GetComponent<TextMeshProUGUI>();
-            goTriangle = GameObject.Find("¹ï¸Ü§¹¦¨¹Ï¥Ü");
+            groupDialogue = GameObject.Find("ç•«å¸ƒå°è©±ç³»çµ±").GetComponent<CanvasGroup>();
+            textName = GameObject.Find("å°è©±è€…åç¨±").GetComponent<TextMeshProUGUI>();
+            textContent = GameObject.Find("å°è©±å…§å®¹").GetComponent<TextMeshProUGUI>();
+            goTriangle = GameObject.Find("å°è©±å®Œæˆåœ–ç¤º");
             goTriangle.SetActive(false);
 
             playerInput = GameObject.Find("PlayerCapsule").GetComponent<PlayerInput>();
@@ -49,10 +49,10 @@ namespace bearfall
         } 
         #endregion
         /// <summary>
-        /// ¶}©l¹ï¸Ü
+        /// é–‹å§‹å°è©±
         /// </summary>
-        /// <param name="data">­n°õ¦æªº¹ï¸Ü¸ê®Æ</param>
-        /// <param name="_onDialogueFinish">¹ï¸Üµ²§ôªº¨Æ¥ó¡A¥i¥H¬°ªÅ­È</param>
+        /// <param name="data">è¦åŸ·è¡Œçš„å°è©±è³‡æ–™</param>
+        /// <param name="_onDialogueFinish">å°è©±çµæŸçš„äº‹ä»¶ï¼Œå¯ä»¥ç‚ºç©ºå€¼</param>
         public void StartDialogue(DialogueData data, UnityEvent _onDialogueFinish = null)
         {
             playerInput.enabled = false;
@@ -61,7 +61,7 @@ namespace bearfall
             onDialogueFinish = _onDialogueFinish;
         }
         /// <summary>
-        /// ²H¤J²H¥X¸s²Õª«¥ó
+        /// æ·¡å…¥æ·¡å‡ºç¾¤çµ„ç‰©ä»¶
         /// </summary>
         private IEnumerator FadeGroup(bool fadeIn = true)
         {
@@ -73,7 +73,7 @@ namespace bearfall
                 yield return new WaitForSeconds(0.04f);
             }
         }
-        #region ¥´¦r®ÄªG
+        #region æ‰“å­—æ•ˆæœ
         private IEnumerator TypeEffect(DialogueData data)
         {
             textName.text = data.dialogueName;
@@ -93,7 +93,7 @@ namespace bearfall
 
                 goTriangle.SetActive(true);
 
-                //¦pªG ª±®a ÁÙ¨S«ö¤U «ü©w«öÁä ´Nµ¥«İ
+                //å¦‚æœ ç©å®¶ é‚„æ²’æŒ‰ä¸‹ æŒ‡å®šæŒ‰éµ å°±ç­‰å¾…
                 while (!Input.GetKeyDown(dialogueKey))
                 {
                     yield return null;
@@ -102,8 +102,8 @@ namespace bearfall
 
             StartCoroutine(FadeGroup(false));
 
-            playerInput.enabled = true;             //¶}±Òª±®a¿é¤J¤¸¥ó
-            onDialogueFinish?.Invoke();               //¹ï¸Üµ²§ô¨Æ¥ó.©I¥s();
+            playerInput.enabled = true;             //é–‹å•Ÿç©å®¶è¼¸å…¥å…ƒä»¶
+            onDialogueFinish?.Invoke();               //å°è©±çµæŸäº‹ä»¶.å‘¼å«();
         }
         #endregion
     }

@@ -1,27 +1,30 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.Events;
 namespace bearfall
 {
     /// <summary>
-    /// ¤¬°Ê¨t²Î:°»´úª±®a¬O§_¶i¤J¨Ã¥B°õ¦æ¤¬°Ê¦æ¬°
+    /// äº’å‹•ç³»çµ±:åµæ¸¬ç©å®¶æ˜¯å¦é€²å…¥ä¸¦ä¸”åŸ·è¡Œäº’å‹•è¡Œç‚º
     /// </summary>
 
     public class InteractableSystem : MonoBehaviour
     {
-        [SerializeField, Header("²Ä¤@¬q¹ï¸Ü¸ê®Æ")]
+        [SerializeField, Header("ç¬¬ä¸€æ®µå°è©±è³‡æ–™")]
         private DialogueData dataDialogue;
-        [SerializeField, Header("¹ï¸Üµ²§ô«áªº¨Æ¥ó")]
+        [SerializeField, Header("å°è©±çµæŸå¾Œçš„äº‹ä»¶")]
         private UnityEvent onDialogueFinish;
-        [SerializeField, Header("±Ò°Ê¹D¨ã")]
+        [SerializeField, Header("å•Ÿå‹•é“å…·")]
         private GameObject propActive;
-        [SerializeField, Header("±Ò°Ê«áªº¹ï¸Ü¸ê®Æ")]
+        [SerializeField, Header("å•Ÿå‹•å¾Œçš„å°è©±è³‡æ–™")]
         private DialogueData dataDialogueActive;
         private string nameTarget = "PlayerCapsule";
+
+        [SerializeField, Header("å•Ÿå‹•å¾Œå°è©±çµæŸå¾Œçš„äº‹ä»¶")]
+        private UnityEvent onDialogueFinishAfterActive;
         private DialogueSystem dialogueSystem;
 
         private void Awake()
         {
-            dialogueSystem = GameObject.Find("µe¥¬¹ï¸Ü¨t²Î").GetComponent<DialogueSystem>();
+            dialogueSystem = GameObject.Find("ç•«å¸ƒå°è©±ç³»çµ±").GetComponent<DialogueSystem>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -30,14 +33,14 @@ namespace bearfall
             {
                 print(other.name);
 
-                //¦pªG ¤£»İ­n±Ò°Ê¹D¨ã ©ÎªÌ ±Ò°Ê¹D¨ã¬OÅã¥Üªº ´N°õ¦æ ²Ä¤@¬q¹ï¸Ü
+                //å¦‚æœ ä¸éœ€è¦å•Ÿå‹•é“å…· æˆ–è€… å•Ÿå‹•é“å…·æ˜¯é¡¯ç¤ºçš„ å°±åŸ·è¡Œ ç¬¬ä¸€æ®µå°è©±
                 if (propActive == null || propActive.activeInHierarchy)
                 {
                     dialogueSystem.StartDialogue(dataDialogue, onDialogueFinish);
                 }
                 else
                 {
-                    dialogueSystem.StartDialogue(dataDialogueActive);
+                    dialogueSystem.StartDialogue(dataDialogueActive, onDialogueFinishAfterActive);
                 }
             }
         }
