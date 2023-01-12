@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 namespace bearfall
 {
     /// <summary>
-    /// ­n¨D¤¸¥ó
+    /// è¦æ±‚å…ƒä»¶
     /// </summary>
-    /// ­n¨D¤¸¥ó:¦b²Ä¤@¦¸®M¥Î¦¹¸}¥»®É·|²K¥[¸Ì­±«ü©wªº¤¸¥ó
+    /// è¦æ±‚å…ƒä»¶:åœ¨ç¬¬ä¸€æ¬¡å¥—ç”¨æ­¤è…³æœ¬æ™‚æœƒæ·»åŠ è£¡é¢æŒ‡å®šçš„å…ƒä»¶
     [RequireComponent(typeof(AudioSource))]
     public class SoundSystem : MonoBehaviour
     {

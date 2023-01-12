@@ -1,22 +1,22 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 
 namespace bearfall
 {
     /// <summary>
-    /// ¾Ç²ß¨ó¦Pµ{§Ç¡AÂ²ºÙ¨óµ{
-    /// ¥Øªº:Åıµ{¦¡°±¯d¹F¨ìµ¥«İªº®ÄªG
+    /// å­¸ç¿’å”åŒç¨‹åºï¼Œç°¡ç¨±å”ç¨‹
+    /// ç›®çš„:è®“ç¨‹å¼åœç•™é”åˆ°ç­‰å¾…çš„æ•ˆæœ
     /// </summary>
 
     public class LearnCoroutine : MonoBehaviour
     {
-        //¨Ï¥Î¨ó¦Pµ{§Çªº¤T­Ó±ø¥ó
-        //1.¤Ş¥Î©R¦WªÅ¶¡ System.Collections
-        //2.©w¸q¤@­Ó¶Ç¦^ IEnumerator ªº¤èªk
-        //3.¤èªk¤º¥²¶·¨Ï¥Î yield return(µ¥«İ)
-        //4.¨Ï¥ÎStartCoroutine ±Ò°Ê
+        //ä½¿ç”¨å”åŒç¨‹åºçš„ä¸‰å€‹æ¢ä»¶
+        //1.å¼•ç”¨å‘½åç©ºé–“ System.Collections
+        //2.å®šç¾©ä¸€å€‹å‚³å› IEnumerator çš„æ–¹æ³•
+        //3.æ–¹æ³•å…§å¿…é ˆä½¿ç”¨ yield return(ç­‰å¾…)
+        //4.ä½¿ç”¨StartCoroutine å•Ÿå‹•
 
-        private string testDialogue = "³o¸Ì¦n¥i©È §Ú·Q§ÖÂI¦^®a...";
+        private string testDialogue = "é€™è£¡å¥½å¯æ€• æˆ‘æƒ³å¿«é»å›å®¶...";
 
         private void Awake()
         {
